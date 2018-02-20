@@ -79,7 +79,9 @@
 			// Now an instance of DiaryTable.
 			$DiaryTable = TableRegistry::get('Diary');
 			$data = json_decode(file_get_contents('php://input'));
-			$DiaryTable->delete($data->diary_id);
+
+			$Diary = $DiaryTable->get($data->diary_id);
+			$DiaryTable->delete($Diary);
 
 			$this->response->type('json');
 			$this->response->body(json_encode($data));
